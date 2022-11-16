@@ -9,22 +9,22 @@
 # Notamment pour quelque chose de plus léger, il n'y a pas de norme en bash.
 #===============================================================================
 
-if [ $# -ne 1 ]
+# 1) On vérifie que l'utilisateur a bien inseré deux arguments. Si non,
+# le programme s'arrete:
+
+if [ $# -ne 2 ]
 then
-	echo " ce programme demande un argument "
+	echo " ce programme demande deux arguments "
 	exit
 fi
 
 fichier_urls=$1 # le fichier d'URL en entrée
 fichier_tableau=$2 # le fichier HTML en sortie
-header=$(curl -I )
-
-# !!!!!!
-# ici on doit vérifier que nos deux paramètres existent, sinon on ferme!
-# !!!!!!
+header=$(curl -I)
 
 
-# modifier la ligne suivante pour créer effectivement du HTML
+# création tableau html en sortie sauvé dans le deuxième argument
+# "fichier_tableau"
 echo "
 	<html>
 		<head>
@@ -45,7 +45,7 @@ echo "
 				</tr>
 			</table>
 		</body>
-	</html>" > tableau.html
+	</html>" > $fichier_tableau.html
 
 lineno=1;
 
