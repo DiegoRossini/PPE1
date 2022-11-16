@@ -45,7 +45,7 @@ echo "
 				</tr>
 			</table>
 		</body>
-	</html>" > $fichier_tableau.html
+	</html>" > tableau.html
 
 lineno=1;
 
