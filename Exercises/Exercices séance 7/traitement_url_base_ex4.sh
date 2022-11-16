@@ -25,7 +25,15 @@ fichier_tableau=$2 # le fichier HTML en sortie
 # Affectation dans une variable de l'encodage de l'URL passé en 
 # premier argument 
 
-encoding=$(curl -I $fichier_urls | egrep -oh "charset=".*"\b")
+encoding=$(curl -I $fichier_urls | egrep "charset=.*\b" | cut -f2 -d=)
+
+# On vérifie si un encodage nous a bien été envoyé (si non, on suppose UTF-8)
+if test -z "$encoding"
+ then
+ 	unset encoding
+ 	encoding=$(echo UTF-8)
+fi
+
 
 
 # création tableau html en sortie sauvé dans le deuxième argument
